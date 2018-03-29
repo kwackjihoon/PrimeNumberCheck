@@ -9,52 +9,52 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet weak var txt: UITextField!
-    @IBOutlet weak var labs: UILabel!
+    @IBOutlet weak var txtInput: UITextField!
+    @IBOutlet weak var lblResult: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        txt.delegate=self
+        txtInput.delegate = self
     }
-    @IBAction func chk(_ sender: Any) {
-        let number = Int(txt.text!)
-        var prime = true
+    @IBAction func btCheck(_ sender: Any) {
+        
+        let number = Int(txtInput.text!)
+        var isPrime = true
+        
         if  number == 1{
-            prime = false
+            isPrime = false
         }
         if number != 1 && number != 2{
             for i in 2..<number!{
                 if number!%i == 0{
-                    prime = false
+                    isPrime = false
                 }
             }
         }
-        if prime == true{
-            labs.text = "소수입니다."
+        if isPrime == true{
+            lblResult.text = "소수입니다."
         }
         else{
-            labs.text = "소수가 아닙니다."
+            lblResult.text = "소수가 아닙니다."
         }
     }
-
-    @IBAction func rst(_ sender: Any) {
-        txt.text=""
-        labs.text=""
-        
+    @IBAction func btResult(_ sender: Any) {
+        txtInput.text = ""
+        lblResult.text = ""
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        txt.resignFirstResponder()
+        txtInput.resignFirstResponder()
         view.endEditing(false)
         return true
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        txt.resignFirstResponder()
+        txtInput.resignFirstResponder()
         view.endEditing(false)
     }
 
